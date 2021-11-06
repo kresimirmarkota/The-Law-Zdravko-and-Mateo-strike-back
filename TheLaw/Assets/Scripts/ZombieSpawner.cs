@@ -4,9 +4,14 @@ using UnityEngine;
 
 public class ZombieSpawner : MonoBehaviour
 {
-    // Start is called before the first frame update
+
+    public Transform playersPostion;
+    public GameObject myPrefabzombie;
+    private GameObject[] zombieArmy;
+    
     void Start()
     {
+        generateSpawnPoints();
         
     }
 
@@ -15,4 +20,20 @@ public class ZombieSpawner : MonoBehaviour
     {
         
     }
+
+    
+    void generateSpawnPoints()
+    {
+        for (int i = 0; i < 10; i++)
+        {
+            var randomPos = (Vector3)(Random.insideUnitCircle * 5) + (Vector3)(Random.insideUnitCircle * 12); 
+                randomPos += playersPostion.position;
+        
+                Instantiate(myPrefabzombie, randomPos, playersPostion.rotation);
+        }
+        
+        
+       
+    }
+
 }
